@@ -1,0 +1,11 @@
+cl/pizzaplaneta/modelos/Cliente.class
+cl/pizzaplaneta/dao/VentaDetalleDao.class
+cl/pizzaplaneta/modelos/Producto.class
+cl/pizzaplaneta/dao/VentaDao.class
+cl/pizzaplaneta/dao/ProductoDao.class
+cl/pizzaplaneta/dao/ClienteDao.class
+cl/pizzaplaneta/modelos/VentaDetalle.class
+cl/pizzaplaneta/ws/Pizzeria.class
+cl/pizzaplaneta/modelos/Modelo.class
+cl/pizzaplaneta/modelos/Venta.class
+cl/pizzaplaneta/dao/Dao.class
