@@ -39,6 +39,18 @@ public class Cliente extends Modelo implements Serializable{
     
     @Column(name = "id_interno_clte")
     private String id_interno_clte;
+    
+    @Column(name = "fecha")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fecha;    
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
 
     public String getId_cliente() {
         return id_cliente;

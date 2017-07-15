@@ -9,10 +9,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author Michel M. <michell@linuxero.cl>
- */
 @Entity
 @Table(name = "ventas")
 public class Venta extends Modelo implements Serializable{
@@ -23,17 +19,11 @@ public class Venta extends Modelo implements Serializable{
 
     @Column(name = "id_interno_clte")
     private String id_interno_clte;
-    
-    //@Column(name="id_producto") 
-    //private String id_producto;
-    
+        
     @Column(name = "fecha_venta")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha_venta;
-    
-    
-    
-    
+
     @Column(name="id_venta")
     private String id_venta;
 
@@ -53,8 +43,6 @@ public class Venta extends Modelo implements Serializable{
         this.id_interno_clte = id_interno_clte;
     }
 
-  
-
     public Date getFecha_venta() {
         return fecha_venta;
     }
@@ -62,9 +50,7 @@ public class Venta extends Modelo implements Serializable{
     public void setFecha_venta(Date fecha_venta) {
         this.fecha_venta = fecha_venta;
     }
-
     
-
     public String getId_venta() {
         return id_venta;
     }
@@ -73,6 +59,4 @@ public class Venta extends Modelo implements Serializable{
         this.id_venta = id_venta;
     }
     
-    
-   
 }

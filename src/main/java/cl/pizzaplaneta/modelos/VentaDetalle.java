@@ -9,7 +9,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
 @Entity
 @Table(name = "detalle_venta")
 public class VentaDetalle extends Modelo implements Serializable{

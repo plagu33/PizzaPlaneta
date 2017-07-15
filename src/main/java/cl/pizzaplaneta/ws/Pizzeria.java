@@ -12,8 +12,6 @@ import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 
-
-
 @WebService(serviceName = "Pizzeria")
 public class Pizzeria {
 
@@ -23,25 +21,18 @@ public class Pizzeria {
      * @return 
      */
     @WebMethod(operationName = "venta")
-    public String crearVenta(
-            
-            @WebParam(name = "id_interno_clte") String id_interno_clte,
-            //@WebParam(name = "id_producto") String id_producto,
-            @WebParam(name = "id_venta") String id_venta
-            
-            
+    public String crearVenta(            
+            @WebParam(name = "id_venta") String id_venta,
+            @WebParam(name = "id_interno_clte") String id_interno_clte            
     ) {
        
-        VentaDao vDao=new VentaDao();
-        
-        Venta venta=new Venta();
-        
-        venta.setId(UUID.randomUUID().toString());
+        VentaDao vDao = new VentaDao();        
+        Venta venta   = new Venta();
+                
+        venta.setId(id_venta);
         venta.setId_interno_clte(id_interno_clte);
-        //venta.setId_producto(id_producto);
-        venta.setId_venta(id_venta);
-        
-        
+        venta.setFecha_venta(new Date());
+                
         vDao.iniciarTransaccion(); //inicia la transaccion en la base de datos
         try{
             
@@ -53,7 +44,7 @@ public class Pizzeria {
             vDao.rollback(); //si hay algun error, hago rollback y no se aplica ningun cambio a la BD
         }
         
-        return "Venta realizada exitosamente!";
+        return "ok";
     }
     
     @WebMethod(operationName = "crearProducto")
@@ -154,6 +145,7 @@ public class Pizzeria {
         cliente.setRut(rut);
         cliente.setTelefono(telefono);
         cliente.setEmail(email);
+        cliente.setFecha(new Date());
         //cliente.setId_interno_clte(id_interno_clte);
         
         cDao.iniciarTransaccion(); //inicia la transaccion en la base de datos
@@ -236,35 +228,37 @@ public class Pizzeria {
             @WebParam(name = "cantidad") int cantidad
             //@WebParam(name = "precio") int producto_precio
     ) {
-        
-        
+
         VentaDetalle ventadet = new VentaDetalle();
+        ventadet.setId_detalle_venta(UUID.randomUUID().toString());
         ventadet.setId_venta(id_venta);
         ventadet.setCodigo_producto(codigo_producto);
         ventadet.setCantidad(cantidad);
-        ventadet.setId_detalle_venta(UUID.randomUUID().toString());
         
         VentaDetalleDao vtDao = new VentaDetalleDao();
         vtDao.iniciarTransaccion();
 
-        try{
-            
+        try{            
             vtDao.insert(ventadet); //intento insertar el campo en la BD
-            vtDao.commit(); //si no da error, hago commit
-            
+            vtDao.commit(); //si no da error, hago commit                                     
         }catch(Exception e){
             e.printStackTrace();
-            vtDao.rollback(); //si hay algun error, hago rollback y no se aplica ningun cambio a la BD
-        }
+            vtDao.rollback(); //si hay algun error, hago rollback y no se aplica ningun cambio a la BD            
+        }                
         
-        return "Producto: "+codigo_producto+" guardado con éxito";
-         //System.out.println("");
+        return codigo_producto;  
+        
     }
 
-    
-    
-    
-    
-
+    @WebMethod(operationName = "listarProductos")
+    public List<Producto> listarProductos() throws ClassNotFoundException {
+        
+        ProductoDao pDao = new ProductoDao();
+        pDao.iniciarTransaccion();
+        List<Producto> productos = pDao.getAll();
+        pDao.commit();
+        return productos;
+        
+    }
 
 }

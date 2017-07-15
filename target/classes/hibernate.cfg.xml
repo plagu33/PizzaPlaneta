@@ -5,9 +5,9 @@
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="connection.datasource">java:/pizzaplaneta-DS</property>
         <property name="hibernate.current_session_context_class">thread</property>
+        <mapping class="cl.pizzaplaneta.modelos.VentaDetalle"/>      
         <mapping class="cl.pizzaplaneta.modelos.Venta"/>
         <mapping class="cl.pizzaplaneta.modelos.Producto"/> 
-        <mapping class="cl.pizzaplaneta.modelos.Cliente"/>
-        <mapping class="cl.pizzaplaneta.modelos.VentaDetalle"/>      
+        <mapping class="cl.pizzaplaneta.modelos.Cliente"/>        
     </session-factory>  
 </hibernate-configuration>
